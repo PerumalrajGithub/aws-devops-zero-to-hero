@@ -1,14 +1,14 @@
 #!/bin/bash
 set -e
 
-# Get the container ID of the running container
-CONTAINER_ID=$(docker ps -q --filter "ancestor=perumalraj2312/simple-python-flask-app:latest")
+# Get the container ID using port 8000
+CONTAINER_ID=$(docker ps -q --filter "publish=8000")
 
-# Stop and remove the container if it exists
+# Stop and remove the container if it's running
 if [ ! -z "$CONTAINER_ID" ]; then
-  echo "Stopping and removing container: $CONTAINER_ID"
+  echo "Stopping and removing container using port 8000: $CONTAINER_ID"
   docker stop "$CONTAINER_ID"
   docker rm "$CONTAINER_ID"
 else
-  echo "No running container found for perumalraj2312/simple-python-flask-app:latest"
+  echo "No running container found on port 8000"
 fi
