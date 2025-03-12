@@ -1,8 +1,11 @@
 #!/bin/bash
 set -e
 
-# Run stop script to clean up previous container
-./stop_container.sh
+# Get the script directory path
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Run stop script to clean up the previous container
+bash "$SCRIPT_DIR/stop_container.sh"
 
 # Pull the latest Docker image
 docker pull perumalraj2312/simple-python-flask-app:latest
